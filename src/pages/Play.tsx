@@ -1,11 +1,10 @@
 import * as React from "react";
 import BrickBreakerGame from "@/components/BrickBreakerGame";
-import { useSearchParams } from "@tanstack/react-router";
 import levels from "@/data/levels";
 
 const Play = () => {
   // allow ?level=#
-  const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "");
   const levelId = params.get("level") || levels[0].id;
 
   return (

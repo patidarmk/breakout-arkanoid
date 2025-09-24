@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link } from "@tanstack/react-router";
+import AppLink from "@/components/AppLink";
 import levels from "@/data/levels";
 
 const PAGE_SIZE = 6;
@@ -47,7 +47,7 @@ const Levels = () => {
               <p className="text-sm text-gray-500 mt-1">{l.description}</p>
               <div className="mt-3 flex items-center justify-between">
                 <div className="text-xs text-gray-500">Difficulty: {l.difficulty}</div>
-                <Link to={`/levels/${l.id}`} className="text-indigo-600 hover:underline text-sm">Details →</Link>
+                <AppLink to={`/levels/${l.id}`} className="text-indigo-600 hover:underline text-sm">Details →</AppLink>
               </div>
             </div>
           </div>

@@ -1,13 +1,13 @@
 import * as React from "react";
-import { useParams, Link } from "@tanstack/react-router";
+import AppLink from "@/components/AppLink";
 import levels from "@/data/levels";
 
 const Breadcrumbs = ({ level }: { level: { id: string; title: string } | null }) => {
   return (
     <nav className="text-sm text-gray-500 mb-4">
-      <Link to="/" className="text-indigo-600 hover:underline">Home</Link>
+      <AppLink to="/" className="text-indigo-600 hover:underline">Home</AppLink>
       <span className="mx-2">/</span>
-      <Link to="/levels" className="text-indigo-600 hover:underline">Levels</Link>
+      <AppLink to="/levels" className="text-indigo-600 hover:underline">Levels</AppLink>
       {level && (
         <>
           <span className="mx-2">/</span>
@@ -19,9 +19,11 @@ const Breadcrumbs = ({ level }: { level: { id: string; title: string } | null })
 };
 
 const LevelDetail = () => {
-  const params = useParams() as any;
-  const id = params.levelId as string;
-  const level = levels.find((l) => l.id === id) || null;
+  // Extract levelId from the URL path: /levels/:id
+  const pathname = typeof window !== "undefined" ? window.location.pathname : "/";
+  const segments = pathname.split("/").filter(Boolean);
+  const id = segments.length >= 2 && segments[0] === "levels" ? segments[1] : null;
+  const level = id ? levels.find((l) => l.id === id) || null : null;
 
   if (!level) {
     return (
@@ -29,7 +31,7 @@ const LevelDetail = () => {
         <h2 className="text-2xl font-semibold">Level not found</h2>
         <p className="text-gray-500 mt-2">This level does not exist.</p>
         <div className="mt-4">
-          <Link to="/levels" className="text-indigo-600 hover:underline">Back to levels</Link>
+          <AppLink to="/levels" className="text-indigo-600 hover:underline">Back to levels</AppLink>
         </div>
       </div>
     );
@@ -48,8 +50,8 @@ const LevelDetail = () => {
             <p className="mt-2 text-gray-600">{level.description}</p>
             <div className="mt-4 text-sm text-gray-500">Difficulty: {level.difficulty}</div>
             <div className="mt-6 flex items-center gap-3">
-              <Link to={`/play?level=${level.id}`} className="px-4 py-2 bg-indigo-600 text-white rounded">Play this level</Link>
-              <Link to="/levels" className="px-4 py-2 border rounded">Back</Link>
+              <AppLink to={`/play?level=${level.id}`} className="px-4 py-2 bg-indigo-600 text-white rounded">Play this level</AppLink>
+              <AppLink to="/levels" className="px-4 py-2 border rounded">Back</AppLink>
             </div>
           </div>
         </div>

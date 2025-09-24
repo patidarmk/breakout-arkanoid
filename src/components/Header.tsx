@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link } from "@tanstack/react-router";
+import AppLink from "@/components/AppLink";
 
 export default function Header() {
   return (
@@ -13,19 +13,19 @@ export default function Header() {
             </svg>
           </div>
           <div>
-            <Link to="/" className="text-xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-pink-500">
+            <AppLink to="/" className="text-xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-pink-500">
               Arcane Breaker
-            </Link>
+            </AppLink>
             <div className="text-xs text-gray-500">Classic brick-breaking reimagined</div>
           </div>
         </div>
 
         <nav className="hidden md:flex items-center space-x-6">
-          <Link to="/" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">Home</Link>
-          <Link to="/play" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">Play</Link>
-          <Link to="/levels" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">Levels</Link>
-          <Link to="/about" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">About</Link>
-          <Link to="/contact" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">Contact</Link>
+          <AppLink to="/" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">Home</AppLink>
+          <AppLink to="/play" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">Play</AppLink>
+          <AppLink to="/levels" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">Levels</AppLink>
+          <AppLink to="/about" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">About</AppLink>
+          <AppLink to="/contact" className="text-gray-700 hover:text-indigo-600 transition-colors font-medium">Contact</AppLink>
         </nav>
 
         <div className="flex items-center space-x-3">
